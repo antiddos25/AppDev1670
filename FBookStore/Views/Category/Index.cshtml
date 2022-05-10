@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-file-earmark-plus"></i> &nbsp; Create New Category
+            </a>
+        </div>
+    </div>
+
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search" spellcheck="false" data-ms-editor="true">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <table class="table table-hover" style="width:100%">
+        <thead>
+            <tr class="table-active">
+                <th scope="row">
+                    Category Name
+                </th>
+                <th scope="row">
+                    Display Order
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                    <tr class="table-primary">
+                        <td scope="row" width="50%">
+                        @obj.Name
+                        </td>
+                        <td scope="row" width="30%">
+                        @obj.DisplayOrder
+                        </td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id">
+                                    <i class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit </i>
+                                </a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id">
+                                    <i class="btn btn-danger mx-2"> <i class="bi bi-trash3"></i> Delete </i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
